@@ -18,7 +18,7 @@ namespace MvcProyectoFinalAWS.Services
 
         public ServicePadel()
         {
-            this.UrlApi = "";
+            this.UrlApi = "https://u9w863fhoh.execute-api.us-east-1.amazonaws.com/Prod";
             this.Header = new MediaTypeWithQualityHeaderValue("application/json");
         }
         //Get token
@@ -150,9 +150,10 @@ namespace MvcProyectoFinalAWS.Services
         }
 
         //Get Usuario 
-        public async Task<Usuario> GetUsuario(string token, int idusuario)
+        public async Task<Usuario> GetUsuario(string token)
         {
-            string request = "/api/Partidos/GetUsuario" + idusuario;
+          
+            string request = "/api/Auth/GetUsuarioToken";
             Usuario usuario = await this.CallApiAsync<Usuario>(request, token);
             return usuario;
         }
