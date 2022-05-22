@@ -1,0 +1,49 @@
+﻿<link rel="stylesheet" href="~/css/Mi_Estilo.css" />
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#LogoLogout").mouseover(function () {
+                this.style.color = "red";
+            });
+            $("#LogoLogout").click(function () {
+                alert("Sesion cerrada");
+            });
+        });
+    </script>
+}
+
+
+@*Usuario no Identificado*@
+@if (Context.User.Identity.IsAuthenticated == false)
+{
+
+    <li class="nav-item">
+        <a class="nav-link mx-2" asp-controller="LogIn" asp-action="Index">
+            <i class="fas fa-heart pe-2"></i>Inicia sesión / Regístrate
+        </a>
+    </li>
+}
+
+@*Usuario identificado*@
+else
+{
+    <li class="nav-item">
+        <a class="nav-link mx-2" asp-controller="Partidos" asp-action="MisPartidos">
+            <i class="fas fa-heart pe-2"></i>Mis partidos
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link mx-2" asp-controller="Partidos" asp-action="PerfilUsuario">
+            <i class="fas fa-heart pe-2"></i>Perfil
+        </a>
+    </li>
+    <li class="nav-link">
+        <a class="nav-link mx-2">Hola, <span style="color:red">@Context.User.Identity.Name</span></a>
+    </li>
+    <li class="nav-item">
+        <a id="LogoLogout" class="nav-link mx-2" asp-controller="Login" asp-action="LogOut">
+            <i id="LogoLogout" class="gg-log-out"></i>
+        </a>
+    </li>
+}

@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MvcProyectoFinalAWS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top">
+            <div class="container">
+
+                <a class="navbar-brand"
+                   asp-controller="Home" asp-action="Index">
+                    <img id="logo"
+                         src="/images/icono.png"
+                         alt="PadLogo"
+                         draggable="false"
+                         height="50" />
+                    TAJAPADEL
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" asp-controller="Home" asp-action="Index">
+                                <i class="fas fa-plus-circle pe-2"></i>Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 disabled">
+                                Noticias (Version2)
+                            </a>
+                        </li>
+                        <partial name="_UsuarioPartial" />
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <br /><br /><br />
+
+
+    @*ZONA DE VISTAS*@
+    @RenderBody()
+
+
+
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/popper-1.14.1.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", false)
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">
+
+            <!-- Section: Form -->
+            <section class="">
+                <!--Grid row-->
+                <div class="row d-flex justify-content-center">
+                    <!--Grid column-->
+                    <div class="col-auto">
+                        <p class="pt-2">
+                            <strong>¡Énterate de todas las novedades!</strong>
+                        </p>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-auto">
+                        <!-- Submit button -->
+
+                        <a asp-controller="Home" asp-action="EnviarCorreo" class="btn btn-outline-light mb-4">
+                            Subscríbete
+                        </a>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+
+            </section>
+            <!-- Section: Form -->
+            <!-- Section: Text -->
+            <section class="mb-4">
+                <p>
+                    TajaPadel es la mejor web para disfutar del pádel. Entra, regístrate y juega partidos sin parar. Juega con tus amigos o conoce a
+                    otras personas que le apasiona este deporte como a ti. Crea tu propia carrera con nuesto sistema de ranking y se el número uno.
+                </p>
+            </section>
+            <!-- Section: Text -->
+            <!-- Section: Links -->
+            <section>
+                <!--Grid row-->
+                <div class="row">
+                    <!--Column Info-->
+                    <div class="col-lg-4 col-md-4 mb-4 mb-md-0">
+
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a class="navbar-brand" style="color:white"
+                                   asp-controller="Home" asp-action="Index">
+                                    <img id="logo"
+                                         src="/images/icono.png"
+                                         alt="PadLogo"
+                                         draggable="false"
+                                         height="50" />
+                                    TAJAPADEL
+                                </a>
+                            </li>
+                            <li>
+                                <p class="text-white">+34 987654321</p>
+                            </li>
+                            <li>
+                                <p class="text-white">Calle Pio Felipe 12</p>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <!--Column Info-->
+                    <!--Column web-->
+                    <div class="col-lg-4 col-md-4 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Nuestra web</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a asp-controller="" class="text-white">Home</a>
+                            </li>
+                            <li>
+                                <a href="https://www.worldpadeltour.com/"
+                                   class="text-white">Noticias</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Login"
+                                   class="text-white">
+                                    Registrate Gratis
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!--Column web-->
+                    <!-- Column Redes-->
+                    <div class="col-lg-4 col-md-4 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Siguenos en nuestras redes</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="https://www.youtube.com/user/TAJAMARtube" class="text-white">YouTube</a>
+                            </li>
+                            <li>
+                                <a href="https://es-es.facebook.com/colegiotajamar/" class="text-white">Facebook</a>
+                            </li>
+                            <li>
+                                <a href="https://techclub.tajamar.es/" class="text-white">Tech Club</a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/ColegioTajamar?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="text-white">Twitter</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Column Redes-->
+
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+        </div>
+        <!-- Grid container -->
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-white" href="https://getbootstrap.com/">Bootstrap</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+</body>
+</html>
