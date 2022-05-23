@@ -23,5 +23,12 @@ namespace MvcProyectoFinalAWS.Controllers
             Usuario usuario = await this.service.GetUsuarioToken(token);   
             return View(usuario);
         }
+        public async Task<ActionResult> PartidosUsuario()
+        {
+            string token = HttpContext.User.FindFirst("token").Value;
+            int idusuario = int.Parse(HttpContext.User.FindFirst("idusuario").Value);
+            List<Partido> partidos = await this.service.GetPartidosUsuario(idusuario, token);
+            return View(partidos);
+        }
     }
 }

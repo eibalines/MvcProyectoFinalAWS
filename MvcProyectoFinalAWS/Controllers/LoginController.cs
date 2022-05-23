@@ -76,8 +76,9 @@ namespace MvcProyectoFinalAWS.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(string username, string mail, string password, string nombre, string apellidos, string pregunta)
+        public async Task<IActionResult> Register(string username, string mail, string password, string nombre, string apellidos, string pregunta)
         {
+            await this.service.CrearUsuario(username, mail, password, nombre, apellidos, pregunta);
             ViewData["MENSAJE"] = "Usuario añadido correctamente";
 
             return View();

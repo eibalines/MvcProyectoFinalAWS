@@ -74,13 +74,13 @@
                     <p class="card-text" style="color:white">Pistas disponibles: @pista.NumPistas</p>
                     @if (Context.User.Identity.IsAuthenticated == false)
                     {
-                        <a asp-controller="Home" asp-action="ReservarPista" asp-route-idpista="@pista.IdCampo"
+                        <a asp-controller="Partidos" asp-action="CrearPartido" asp-route-idpista="@pista.IdCampo"
                            class="btn btn-primary disabled">Reservar</a>
                         <span>Inicie Sesion para reservar</span>
                     }
                     else
                     {
-                        <a asp-controller="Home" asp-action="ReservarPista" asp-route-idpista="@pista.IdCampo"
+                        <a asp-controller="Partidos" asp-action="CrearPartido" asp-route-idcampo="@pista.IdCampo"
                            class="btn btn-primary ">Reservar</a>
                     }
                 </div>

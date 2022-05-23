@@ -21,17 +21,34 @@ namespace MvcProyectoFinalAWS.Controllers
             return View();
         }
 
-        public async Task<IActionResult> MisPartidos(int idusuario)
+        public async Task<IActionResult> MisPartidos()
         {
             string token = HttpContext.User.FindFirst("TOKEN").Value;
-            List<Partido> partidos = await this.service.GetPartidosUsuarios(idusuario, token);
+            int idusuario = int.Parse(HttpContext.User.FindFirst("idusuario").Value);
+            List<Partido> partidos = await this.service.GetPartidosUsuario(idusuario, token);
             return View(partidos);
         }
 
-       
-        public ActionResult BorrarPartido()
+        public async Task<IActionResult> CrearPartido(int idcampo)
         {
-            return View();
+          CampoPadel campo = await this.service.FindCampo(idcampo);
+            return View(campo);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CrearPartido(Partido partido)
+        {
+
+           int idusuario =  int.Parse(HttpContext.User.FindFirst("idusuario").Value);
+           await this.service.CrearPartido(partido.IdCampo, partido.IdPista, partido.Fecha, partido.HoraInicio, partido.HoraFinal, partido.Precio, idusuario, partido.NombrePista);
+
+            return RedirectToAction("MisPartidos");
+        }
+
+
+        public async Task<ActionResult> BorrarPartido(int idpartido)
+        {
+            await this.service.BorrarPartido(idpartido);
+            return RedirectToAction("MisPartidos");
         }
         public ActionResult Index()
         {

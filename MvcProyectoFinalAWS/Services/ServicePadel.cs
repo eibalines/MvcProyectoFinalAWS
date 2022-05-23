@@ -127,7 +127,7 @@ namespace MvcProyectoFinalAWS.Services
 
         //Get partidos de usuario [Authorize]
 
-        public async Task<List<Partido>> GetPartidosUsuarios(int idusuario, string token)
+        public async Task<List<Partido>> GetPartidosUsuario(int idusuario, string token)
         {
             string request = "/Prod/api/Partidos/GetPartidosUsuario/" + idusuario;
             List<Partido> partidos =
@@ -165,7 +165,7 @@ namespace MvcProyectoFinalAWS.Services
 
 
         //Crear partido
-        public async Task CrearPartido(int idcampo, int idpista, DateTime fecha, TimeSpan horainicio, TimeSpan horafinal, double precio, int idjugador)
+        public async Task CrearPartido(int idcampo, int idpista, DateTime fecha, string horainicio, string horafinal, double precio, int idjugador, string nombrecampo)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -182,6 +182,7 @@ namespace MvcProyectoFinalAWS.Services
                 partido.HoraFinal = horafinal;
                 partido.Precio = precio;
                 partido.Jugador1 = idjugador;
+                partido.NombrePista = nombrecampo;
 
                 string json = JsonConvert.SerializeObject(partido);
                 StringContent content = new StringContent
@@ -193,8 +194,55 @@ namespace MvcProyectoFinalAWS.Services
         }
 
 
-        //enviar Mail Partido
-        public async Task<string> EnviarMail()
+        
+
+        public async Task CrearUsuario(string username, string mail, string password, string nombre, string apellidos, string pregunta)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string request = "/Prod/api/Usuarios/RegistrarUsuario";
+
+                client.BaseAddress = new Uri(this.UrlApi);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.Header);
+                Usuario usuario = new Usuario
+                {
+                    UserName = username,
+                    Mail = mail,
+                    Password = password,
+                    Nombre = nombre,
+                    Apellidos = apellidos,
+                    PreguntaSeguridad = pregunta
+                };
+                
+
+                string json = JsonConvert.SerializeObject(usuario);
+                StringContent content = new StringContent
+                    (json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response =
+                    await client.PostAsync(request, content);
+            }
+           
+        }
+
+        public async Task BorrarPartido(int idpartido)
+            {
+
+                using (HttpClient client = new HttpClient())
+                {
+                    string request = "/Prod/api/Partidos/BorrarPartido/" + idpartido;
+                    client.BaseAddress = new Uri(this.UrlApi);
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(this.Header);
+                    HttpResponseMessage response =
+                    await client.DeleteAsync(request);
+                }
+            }
+
+
+
+            //enviar Mail Partido
+            public async Task<string> EnviarMail()
         {
         //    string urlCorreo = "https://prod-230.westeurope.logic.azure.com:443/workflows/b827d7fe674744c2b15c1723b2b575b3/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_YIMjqzJUIEOUszShltr0enSIvfSoyQVFGOxojTqcA8";
         //    string correo = "diego.sanchezcanamero@tajamar365.com";
