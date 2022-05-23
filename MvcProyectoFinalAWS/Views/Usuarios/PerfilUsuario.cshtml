@@ -36,7 +36,7 @@
                             <div class="col-md-12"><label class="labels">Nivel</label><input type="number" class="form-control" name="nivel" value="@Model.Nivel"></div>
 
                             <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Guardar Perfil</button></div>
-                            <div class="mt-5 text-center"><a class="btn btn-danger" asp-controller="Usuario" asp-action="BorrarUsuario" asp-route-idusuario="@Model.IdUsuario">Borrar Perfil</a></div>
+                            <div class="mt-5 text-center"><a class="btn btn-danger" asp-controller="Usuarios" asp-action="BorrarUsuario" asp-route-idusuario="@Model.IdUsuario">Borrar Perfil</a></div>
 
                             <h1>@ViewData["MENSAJE"]</h1>
                         </div>

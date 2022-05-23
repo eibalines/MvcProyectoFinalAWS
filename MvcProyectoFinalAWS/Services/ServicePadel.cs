@@ -239,10 +239,24 @@ namespace MvcProyectoFinalAWS.Services
                 }
             }
 
+        public async Task BorrarUsuario(int idusuario)
+        {
+
+            using (HttpClient client = new HttpClient())
+            {
+                string request = "/Prod/api/Usuarios/BorrarUsuario/" + idusuario;
+                client.BaseAddress = new Uri(this.UrlApi);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.Header);
+                HttpResponseMessage response =
+                await client.DeleteAsync(request);
+            }
+        }
 
 
-            //enviar Mail Partido
-            public async Task<string> EnviarMail()
+
+        //enviar Mail Partido
+        public async Task<string> EnviarMail()
         {
         //    string urlCorreo = "https://prod-230.westeurope.logic.azure.com:443/workflows/b827d7fe674744c2b15c1723b2b575b3/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_YIMjqzJUIEOUszShltr0enSIvfSoyQVFGOxojTqcA8";
         //    string correo = "diego.sanchezcanamero@tajamar365.com";

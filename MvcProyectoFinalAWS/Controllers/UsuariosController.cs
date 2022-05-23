@@ -30,5 +30,12 @@ namespace MvcProyectoFinalAWS.Controllers
             List<Partido> partidos = await this.service.GetPartidosUsuario(idusuario, token);
             return View(partidos);
         }
+
+        public async Task<ActionResult> BorrarUsuario(int idusuario)
+        {
+            await this.service.BorrarUsuario(idusuario);
+
+            return RedirectToAction("Logout", "Login");
+        }
     }
 }
