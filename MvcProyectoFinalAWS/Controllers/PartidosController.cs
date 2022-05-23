@@ -28,12 +28,7 @@ namespace MvcProyectoFinalAWS.Controllers
             return View(partidos);
         }
 
-        public async Task<ActionResult> PerfilUsuario(int idusuario)
-        {
-            string token = HttpContext.User.FindFirst("TOKEN").Value;
-            Usuario usuario = await this.service.GetUsuario(token, idusuario);
-            return View(usuario);
-        }
+       
         public ActionResult BorrarPartido()
         {
             return View();

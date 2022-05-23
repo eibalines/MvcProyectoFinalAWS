@@ -10,9 +10,4 @@
     <PackageReference Include="NugetPadelAWS-DSC" Version="1.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\LogIn\" />
-    <Folder Include="Views\Usuario\" />
-  </ItemGroup>
-
 </Project>

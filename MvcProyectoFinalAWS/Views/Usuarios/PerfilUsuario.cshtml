@@ -1,0 +1,50 @@
+﻿@model NugetPadelAWS_DSC.Usuario
+@{
+    if (@Model.Imagen == null)
+    {
+        Model.Imagen = "iconoDefault.svg";
+    }
+
+
+}
+<section class="vh-100">
+    <form method="post">
+        <div class="container rounded bg-white mt-5 mb-5">
+
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" style="width:150px;" src="~/images/iconosUsuario/@Model.Imagen"><br />
+
+                    </div>
+                </div>
+                <div class="col-md-5 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Perfil</h4>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12"><label class="labels">Usuario</label><input type="text" class="form-control" value="@Model.UserName" name="username"></div>
+                            <div class="col-md-12"><label class="labels">Nombre</label><input type="text" class="form-control" value="@Model.Nombre" name="nombre"></div>
+                            <div class="col-md-12"><label class="labels">Apellidos</label><input type="text" class="form-control" value="@Model.Apellidos" name="apellidos"></div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12"><label class="labels">Número de teléfono</label><input type="text" class="form-control" name="telefono" value="@Model.Telefono"></div>
+                            <div class="col-md-12"><label class="labels">Direccion</label><input type="text" class="form-control" name="direccion" value="@Model.Direccion"></div>
+
+                            
+                            <div class="col-md-12"><label class="labels">Nivel</label><input type="number" class="form-control" name="nivel" value="@Model.Nivel"></div>
+
+                            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Guardar Perfil</button></div>
+                            <div class="mt-5 text-center"><a class="btn btn-danger" asp-controller="Usuario" asp-action="BorrarUsuario" asp-route-idusuario="@Model.IdUsuario">Borrar Perfil</a></div>
+
+                            <h1>@ViewData["MENSAJE"]</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

@@ -1,1 +1,93 @@
-﻿<h1>Mi pagina</h1>
+﻿@model List<NugetPadelAWS_DSC.CampoPadel>
+<link href="~/css/Mi_Estilo.css" />
+
+
+<br />
+
+<div class="row justify-content-center m-0">
+    <div class="col-auto text-center">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/images/Carousel/Bela.PNG" alt="...">
+                    <div class="carousel-caption d-none d-md-block" style="background-color: #212529">
+                        <h5>¿Te gusta el pádel?</h5>
+                        <p>
+                            <a class="link-info"
+                               style="color: lightgreen"
+                               asp-controller="Login"
+                               asp-action="Register">
+                                ¡REGÍSTRATE GRATIS!
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/Carousel/Tapia.PNG" alt="...">
+                    <div class="carousel-caption d-none d-md-block" style="background-color: #212529">
+                        <h5>¿Quieres jugar con tus amigos?</h5>
+                        <p>
+                            <a class="link-info"
+                               style="color: lightgreen"
+                               asp-controller="Login"
+                               asp-action="Register">
+                                ¡REGÍSTRATE GRATIS!
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/Carousel/Paquito.PNG" alt="...">
+                    <div class="carousel-caption d-none d-md-block" style="background-color: #212529">
+                        <h5>¿Buscas enfrentarte a otros rivales?</h5>
+                        <p>
+                            <a class="link-info"
+                               style="color: lightgreen"
+                               asp-controller="Login"
+                               asp-action="Register">
+                                ¡REGÍSTRATE GRATIS!
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<br />
+<br />
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 row-cols-lg-1 row-cols-xl-2 g-3 justify-content-center">
+    @if(@Model != null){ 
+    @foreach (var pista in Model)
+    {
+        <div class="col m-3" style="width: 350px">
+            <div class="card" style="width: 350px; background-color: #212529">
+                <a href="@pista.Link"><img src="@pista.Imagen" style="width:348px; height: 348px; object-fit: cover" class="card-img-top"></a>
+
+
+                <div class="card-body">
+                    <h5 class="card-title" style="color:lightgreen">@pista.NombreCampo</h5>
+                    <p class="card-text" style="color:white">@pista.Ubicacion</p>
+                    <p class="card-text" style="color:white">@pista.Descripcion</p>
+                    <p class="card-text" style="color:white">Pistas disponibles: @pista.NumPistas</p>
+                    @if (Context.User.Identity.IsAuthenticated == false)
+                    {
+                        <a asp-controller="Home" asp-action="ReservarPista" asp-route-idpista="@pista.IdCampo"
+                           class="btn btn-primary disabled">Reservar</a>
+                        <span>Inicie Sesion para reservar</span>
+                    }
+                    else
+                    {
+                        <a asp-controller="Home" asp-action="ReservarPista" asp-route-idpista="@pista.IdCampo"
+                           class="btn btn-primary ">Reservar</a>
+                    }
+                </div>
+            </div>
+            
+        </div>
+        
+    }
+    }
+</div>

@@ -33,12 +33,12 @@ namespace MvcProyectoFinalAWS.Controllers
                 await this.service.GetTokenAsync(mail, password);
             if (token == null)
             {
-                ViewData["MENSAJE"] = "Mail/Password incorrectos";
+                ViewData["MENSAJEACCESODENEGADO"] = "Mail/Password incorrectos";
                 return View();
             }
             else
             {
-                Usuario user = await this.service.GetUsuario(token);
+                Usuario user = await this.service.GetUsuarioToken(token);
                 HttpContext.Session.SetString("TOKEN", token);
                 ClaimsIdentity identity =
                     new ClaimsIdentity
@@ -46,12 +46,18 @@ namespace MvcProyectoFinalAWS.Controllers
                     , ClaimTypes.Name, ClaimTypes.Role);
 
                 identity.AddClaim(new Claim(ClaimTypes.Name, user.Mail));
-                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.IdUsuario.ToString()));
+                identity.AddClaim(new Claim("idusuario", user.IdUsuario.ToString()));
                 identity.AddClaim(new Claim("password", user.Password));
-                identity.AddClaim(new Claim("username", token));
-                identity.AddClaim(new Claim("TOKEN", token));
-                identity.AddClaim(new Claim("TOKEN", token));
-                identity.AddClaim(new Claim("TOKEN", token));
+                identity.AddClaim(new Claim("username", user.UserName));
+                identity.AddClaim(new Claim("nombre", user.Nombre));
+                identity.AddClaim(new Claim("apellidos", user.Apellidos));
+                identity.AddClaim(new Claim("nivel", user.Nivel.ToString()));
+                identity.AddClaim(new Claim("imagen", user.Imagen));
+                identity.AddClaim(new Claim("partidosJugados", user.PartidosJugados.ToString()));
+                identity.AddClaim(new Claim("telefono", user.Telefono));
+                identity.AddClaim(new Claim("direccion", user.Direccion));
+                identity.AddClaim(new Claim("preguntaseguridad", user.PreguntaSeguridad));
+                identity.AddClaim(new Claim("token", token));
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync
                     (CookieAuthenticationDefaults.AuthenticationScheme

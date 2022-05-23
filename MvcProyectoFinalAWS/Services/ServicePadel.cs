@@ -37,7 +37,7 @@ namespace MvcProyectoFinalAWS.Services
                 string json = JsonConvert.SerializeObject(usuario);
                 StringContent content =
                     new StringContent(json, Encoding.UTF8, "application/json");
-                string request = "/api/Auth/Login";
+                string request = "/Prod/api/Auth/Login";
                 HttpResponseMessage response =
                     await client.PostAsync(request, content);
                 if (response.IsSuccessStatusCode)
@@ -107,7 +107,7 @@ namespace MvcProyectoFinalAWS.Services
         //Todos los campos
         public async Task<List<CampoPadel>> GetTodosCampos()
         {
-            string request = "/api/Campos/GetTodosCampos";
+            string request = "/Prod/api/Campos/GetTodosCampos";
             List<CampoPadel> campos =
                 await this.CallApiAsync<List<CampoPadel>>(request);
             return campos;
@@ -116,7 +116,7 @@ namespace MvcProyectoFinalAWS.Services
         //FindCampo
         public async Task<CampoPadel> FindCampo(int idcampo)
         {
-            string request = "/api/Campos/GetTodosCampos/" + idcampo;
+            string request = "/Prod/api/Campos/GetCampo/" + idcampo;
             CampoPadel campo =
                 await this.CallApiAsync<CampoPadel>(request);
             return campo;
@@ -129,31 +129,31 @@ namespace MvcProyectoFinalAWS.Services
 
         public async Task<List<Partido>> GetPartidosUsuarios(int idusuario, string token)
         {
-            string request = "/api/Partidos/GetPartidosUsuario/" + idusuario;
+            string request = "/Prod/api/Partidos/GetPartidosUsuario/" + idusuario;
             List<Partido> partidos =
                  await this.CallApiAsync<List<Partido>>(request, token);
             return partidos;
 
         }
-
-      
 
 
         //Find Partido [Authorize]
         public async Task<List<Partido>> FindPartido(string token, int idpartido)
         {
-            string request = "/api/Partidos/FindPartido/" + idpartido;
+            string request = "/Prod/api/Partidos/FindPartido/" + idpartido;
             List<Partido> partidos =
                  await this.CallApiAsync<List<Partido>>(request, token);
             return partidos;
 
         }
 
-        //Get Usuario 
-        public async Task<Usuario> GetUsuario(string token)
+
+
+        //Get Usuario registrado (obtiene info del token)
+        public async Task<Usuario> GetUsuarioToken(string token)
         {
           
-            string request = "/api/Auth/GetUsuarioToken";
+            string request = "/Prod/api/Auth/GetUsuarioToken";
             Usuario usuario = await this.CallApiAsync<Usuario>(request, token);
             return usuario;
         }
@@ -169,7 +169,7 @@ namespace MvcProyectoFinalAWS.Services
         {
             using (HttpClient client = new HttpClient())
             {
-                string request = "/api/Partidos/CrearPartido";
+                string request = "/Prod/api/Partidos/CrearPartido";
 
                 client.BaseAddress = new Uri(this.UrlApi);
                 client.DefaultRequestHeaders.Clear();

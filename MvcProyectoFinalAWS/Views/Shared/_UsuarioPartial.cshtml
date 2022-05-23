@@ -34,12 +34,12 @@ else
     </li>
 
     <li class="nav-item">
-        <a class="nav-link mx-2" asp-controller="Partidos" asp-action="PerfilUsuario">
+        <a class="nav-link mx-2" asp-controller="Usuarios" asp-action="PerfilUsuario">
             <i class="fas fa-heart pe-2"></i>Perfil
         </a>
     </li>
     <li class="nav-link">
-        <a class="nav-link mx-2">Hola, <span style="color:red">@Context.User.Identity.Name</span></a>
+        <a class="nav-link mx-2">Hola, <span style="color:red">@Context.User.FindFirst("username").Value</span></a>
     </li>
     <li class="nav-item">
         <a id="LogoLogout" class="nav-link mx-2" asp-controller="Login" asp-action="LogOut">
